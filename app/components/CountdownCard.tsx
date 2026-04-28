@@ -30,7 +30,7 @@ export function CountdownCard({ bigNumber, bigNumberLabel, bodyText, dayOfTen, a
             See what&apos;s being built
           </a>
           <button onClick={() => setShowMessageModal(true)} className="px-6 py-3 bg-white border border-[var(--color-border-strong)] hover:border-[var(--color-text-primary)] text-[var(--color-text-primary)] rounded-full font-semibold text-sm transition">
-            Talk to {amName.split(' ')[0]}
+            Email {amName.split(' ')[0]}
           </button>
         </div>
       </section>

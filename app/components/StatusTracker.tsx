@@ -5,10 +5,10 @@ import type { OnboardingStage } from '@/app/data/zees';
 
 const STAGES: Array<{ id: number; key: OnboardingStage; label: string }> = [
   { id: 1, key: 'welcome_aboard', label: 'WELCOME ABOARD' },
-  { id: 2, key: 'brand_intake', label: 'BRAND INTAKE' },
-  { id: 3, key: 'building_campaigns', label: 'BUILDING YOUR CAMPAIGNS' },
-  { id: 4, key: 'final_review', label: 'FINAL REVIEW' },
-  { id: 5, key: 'go_live', label: 'GO LIVE' },
+  { id: 2, key: 'agency_change_submitted', label: 'AGENCY CHANGE SUBMITTED' },
+  { id: 3, key: 'corporate_access_granted', label: 'CORPORATE ACCESS GRANTED' },
+  { id: 4, key: 'campaigns_built', label: 'CAMPAIGNS BUILT' },
+  { id: 5, key: 'live', label: 'LIVE' },
 ];
 
 function getStageState(stageKey: OnboardingStage, current: OnboardingStage): 'complete' | 'current' | 'future' {

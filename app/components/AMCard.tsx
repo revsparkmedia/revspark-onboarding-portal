@@ -1,10 +1,6 @@
-'use client';
 import Image from 'next/image';
-import { useState } from 'react';
 
 export function AMCard({ am }: { am: { name: string; title: string; bio: string; photoUrl: string } }) {
-  const [bookingClicked, setBookingClicked] = useState(false);
-
   return (
     <section className="brand-card-elevated p-8 md:p-10">
       <div className="flex flex-col md:flex-row gap-8">
@@ -28,22 +24,11 @@ export function AMCard({ am }: { am: { name: string; title: string; bio: string;
             {am.bio}
           </p>
           <div className="mt-5 flex flex-wrap gap-2">
-            {['RESPONDS IN UNDER 2 HOURS', 'WEEKLY 1:1 EVERY THURSDAY', 'DIRECT SLACK ACCESS'].map(badge => (
+            {['REPLIES SAME DAY', 'BI-WEEKLY 1:1 EVERY OTHER THURSDAY', 'EMAIL ONLY'].map(badge => (
               <span key={badge} className="text-[10px] font-semibold tracking-[0.1em] px-3 py-1.5 border border-[var(--color-border-hairline)] rounded-full text-[var(--color-text-secondary)]">
                 {badge}
               </span>
             ))}
-          </div>
-          <div className="mt-6 flex flex-col md:flex-row gap-3">
-            <button
-              onClick={() => setBookingClicked(true)}
-              className="px-5 py-2.5 bg-[var(--color-orange)] hover:bg-[var(--color-orange-hover)] text-white rounded-full text-sm font-semibold transition"
-            >
-              {bookingClicked ? 'Calendar opening...' : 'Book a call'}
-            </button>
-            <button className="px-5 py-2.5 bg-white border border-[var(--color-border-strong)] hover:border-[var(--color-text-primary)] text-[var(--color-text-primary)] rounded-full text-sm font-semibold transition">
-              Send a message
-            </button>
           </div>
         </div>
       </div>

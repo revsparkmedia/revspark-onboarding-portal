@@ -1,6 +1,6 @@
 'use client';
 import { useState } from 'react';
-import { Check } from 'lucide-react';
+import { Check, ExternalLink } from 'lucide-react';
 import type { ZeeData } from '@/app/data/zees';
 
 type LocalStatus = 'pending' | 'completed' | 'snoozed';
@@ -56,6 +56,16 @@ export function TaskPanel({ tasks }: { tasks: ZeeData['tasks'] }) {
                       <button className="text-xs px-3 py-1 border border-[var(--color-border-hairline)] rounded-full hover:border-[var(--color-text-primary)] transition">
                         Question?
                       </button>
+                      {task.formUrl && (
+                        <a
+                          href={task.formUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-xs px-3 py-1 border border-[var(--color-orange)] rounded-full text-[var(--color-orange)] hover:bg-[var(--color-orange-tint)] transition flex items-center gap-1"
+                        >
+                          <ExternalLink className="w-3 h-3" /> View form
+                        </a>
+                      )}
                     </div>
                   )}
                   {isCompleted && (

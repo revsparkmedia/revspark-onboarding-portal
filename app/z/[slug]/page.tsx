@@ -8,7 +8,7 @@ import { TaskPanel } from '@/app/components/TaskPanel';
 import { AMCard } from '@/app/components/AMCard';
 import { BuildStatus } from '@/app/components/BuildStatus';
 import { AdminCheckpoints } from '@/app/components/AdminCheckpoints';
-import { KPIStrip } from '@/app/components/KPIStrip';
+
 import { Footer } from '@/app/components/Footer';
 import { DemoControls } from '@/app/components/DemoControls';
 
@@ -39,11 +39,10 @@ export default async function ZeePortalPage({ params }: { params: Promise<{ slug
             dayOfTen={zee.launch.dayOfTen}
             amName={zee.am.name}
           />
+          <AMCard am={zee.am} />
           <TaskPanel tasks={zee.tasks} />
           <AdminCheckpoints checkpoints={zee.adminCheckpoints} />
-          <AMCard am={zee.am} />
           <BuildStatus items={zee.buildItems} />
-          <KPIStrip />
         </div>
       </main>
       <Footer />
