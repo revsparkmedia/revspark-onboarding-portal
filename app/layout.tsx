@@ -22,7 +22,7 @@ const fraunces = Fraunces({
 });
 
 export const metadata: Metadata = {
-  title: "Apex Men's Health . RevSpark Portal",
+  title: "Gameday Men's Health · RevSpark Portal",
   description: "Your franchise marketing portal.",
 };
 

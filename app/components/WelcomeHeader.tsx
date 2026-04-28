@@ -20,7 +20,7 @@ export function WelcomeHeader() {
           margin: 0,
         }}
       >
-        Welcome back, <em className="fraunces-em">Apex Men&apos;s Health</em>
+        Welcome back, <em className="fraunces-em">Gameday Men&apos;s Health</em>
       </h1>
       <p
         style={{
