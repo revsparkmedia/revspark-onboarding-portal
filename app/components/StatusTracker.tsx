@@ -8,10 +8,10 @@ type StageState = "complete" | "current" | "future";
 
 const STAGES: { id: number; label: string; state: StageState }[] = [
   { id: 1, label: "WELCOME ABOARD", state: "complete" },
-  { id: 2, label: "BUILDING YOUR CAMPAIGNS", state: "complete" },
-  { id: 3, label: "READY FOR REVIEW", state: "complete" },
-  { id: 4, label: "LIVE ADS", state: "current" },
-  { id: 5, label: "OPTIMIZING", state: "future" },
+  { id: 2, label: "BRAND INTAKE", state: "complete" },
+  { id: 3, label: "BUILDING YOUR CAMPAIGNS", state: "current" },
+  { id: 4, label: "FINAL REVIEW", state: "future" },
+  { id: 5, label: "GO LIVE", state: "future" },
 ];
 
 function dotForState(state: StageState) {
@@ -175,7 +175,7 @@ export function StatusTracker() {
             lineHeight: 1.5,
           }}
         >
-          Your campaigns went live April 12. We&apos;re now in week 3 of optimization.
+          Day 7 of 10. Your campaigns are being built. Final review opens in 2 days.
         </p>
       </div>
 
@@ -234,7 +234,7 @@ export function StatusTracker() {
           >
             <div
               style={{
-                width: "80%",
+                width: "60%",
                 height: "100%",
                 background: "var(--teal)",
               }}
@@ -295,7 +295,7 @@ export function StatusTracker() {
             lineHeight: 1.5,
           }}
         >
-          Your campaigns went live April 12. We&apos;re now in week 3 of optimization.
+          Day 7 of 10. Your campaigns are being built. Final review opens in 2 days.
         </p>
       </div>
     </section>

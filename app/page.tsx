@@ -1,10 +1,10 @@
 import { TopBar } from "@/app/components/TopBar";
 import { WelcomeHeader } from "@/app/components/WelcomeHeader";
 import { StatusTracker } from "@/app/components/StatusTracker";
-import { InsightCard } from "@/app/components/InsightCard";
+import { CountdownCard } from "@/app/components/CountdownCard";
 import { TaskPanel } from "@/app/components/TaskPanel";
 import { AMCard } from "@/app/components/AMCard";
-import { CreativeStrip } from "@/app/components/CreativeStrip";
+import { BuildStatus } from "@/app/components/BuildStatus";
 import { KPIStrip } from "@/app/components/KPIStrip";
 import { Footer } from "@/app/components/Footer";
 
@@ -17,10 +17,10 @@ export default function Page() {
         <WelcomeHeader />
         <StatusTracker />
         <div className="space-y-8 mt-12">
-          <InsightCard />
+          <CountdownCard />
           <TaskPanel />
           <AMCard />
-          <CreativeStrip />
+          <BuildStatus />
           <KPIStrip />
         </div>
       </main>

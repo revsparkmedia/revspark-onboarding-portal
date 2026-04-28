@@ -11,34 +11,35 @@ type Task = {
 const TASKS: Task[] = [
   {
     tone: "amber",
-    title: "Approve May creative refresh.",
+    title: "Approve creative variants",
     description:
-      "Three new ad variants for review. We need your sign-off by Friday to launch on schedule.",
-    due: "DUE MAY 1",
+      "Three Meta ad variants are ready for your sign-off. Approving by tomorrow keeps your launch on Day 10.",
+    due: "DUE TOMORROW",
     optional: false,
   },
   {
     tone: "amber",
-    title: "Upload updated location photos.",
+    title: "Upload final clinic photos",
     description:
-      "We have 4 photos of your Plano clinic. Two more interior shots would round out the creative library.",
-    due: "DUE MAY 5",
+      "We have your hero shots. Two interior photos would round out the creative library before launch.",
+    due: "DUE BY DAY 9",
     optional: false,
   },
   {
     tone: "teal",
-    title: "Review last week's performance summary.",
+    title: "Schedule your launch-day check-in",
     description:
-      "Your week 3 report is ready. Spend, leads, booked consults, all in one view.",
+      "Michelle wants to walk you through the live dashboard the moment ads turn on.",
     due: "OPTIONAL",
     optional: true,
   },
   {
     tone: "teal",
-    title: "Sign May addendum.",
-    description: "Standard monthly addendum. Two clicks.",
-    due: "DUE MAY 7",
-    optional: false,
+    title: "Review your brand voice doc",
+    description:
+      "We've drafted your messaging guardrails based on your intake call. Read-through takes 5 minutes.",
+    due: "OPTIONAL",
+    optional: true,
   },
 ];
 

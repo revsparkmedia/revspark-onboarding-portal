@@ -98,7 +98,7 @@ export function AMCard() {
               lineHeight: 1.2,
             }}
           >
-            Michelle Carlson . Account Manager
+            Michelle Carlson . Your Launch Lead
           </h3>
           <p
             style={{
@@ -111,8 +111,8 @@ export function AMCard() {
               maxWidth: "560px",
             }}
           >
-            Account manager for franchise accounts. Built and ramped multi-location systems for the
-            past several years.
+            Account manager for franchise accounts. Has personally launched 40+ men&apos;s health
+            locations on time and on budget.
           </p>
 
           <div

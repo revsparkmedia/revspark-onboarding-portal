@@ -1,9 +1,9 @@
-export function InsightCard() {
+export function CountdownCard() {
   return (
     <section
       className="glass-card"
       style={{
-        padding: "clamp(24px, 4vw, 32px)",
+        padding: "clamp(28px, 4vw, 40px)",
       }}
     >
       <div
@@ -15,7 +15,7 @@ export function InsightCard() {
           flexWrap: "wrap",
         }}
       >
-        <div className="eyebrow">THIS WEEK</div>
+        <div className="eyebrow">LAUNCH STATUS</div>
         <div
           style={{
             fontFamily: "var(--font-mono)",
@@ -24,36 +24,60 @@ export function InsightCard() {
             letterSpacing: "0.1em",
           }}
         >
-          WEEK OF APR 22 . APR 28
+          DAY 7 OF 10
         </div>
       </div>
 
-      <h2
+      <div
         style={{
-          marginTop: "20px",
-          fontFamily: "var(--font-sans)",
-          fontWeight: 600,
-          fontSize: "clamp(22px, 3vw, 28px)",
-          lineHeight: 1.2,
-          color: "var(--text-primary)",
+          marginTop: "32px",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          textAlign: "center",
         }}
       >
-        Your CAC dropped <em className="fraunces-em">18%</em> this week.
-      </h2>
+        <div
+          style={{
+            fontFamily: "var(--font-mono)",
+            fontWeight: 500,
+            fontSize: "96px",
+            lineHeight: 1,
+            color: "var(--teal)",
+          }}
+        >
+          3
+        </div>
+        <div
+          style={{
+            marginTop: "16px",
+            fontFamily: "var(--font-mono)",
+            fontSize: "14px",
+            letterSpacing: "0.25em",
+            textTransform: "uppercase",
+            color: "var(--text-secondary)",
+          }}
+        >
+          DAYS UNTIL YOUR ADS GO LIVE
+        </div>
+      </div>
 
       <p
         style={{
-          marginTop: "16px",
+          marginTop: "32px",
+          marginLeft: "auto",
+          marginRight: "auto",
+          maxWidth: "560px",
+          textAlign: "center",
           fontFamily: "var(--font-sans)",
           fontWeight: 400,
           fontSize: "16px",
           color: "var(--text-secondary)",
-          lineHeight: 1.5,
+          lineHeight: 1.6,
         }}
       >
-        Top driver: a new ED-focused creative variant your AM staged last Tuesday. The variant is
-        now scaled to 60 percent of total Meta spend. Two more variants are in the queue for next
-        week.
+        Your Meta campaigns are 80 percent built. Google Search is wired and awaiting final keyword
+        review. Two creative variants are with our compliance team. We are on track for Day 10.
       </p>
 
       <div
@@ -62,6 +86,7 @@ export function InsightCard() {
           display: "flex",
           flexWrap: "wrap",
           gap: "12px",
+          justifyContent: "center",
         }}
       >
         <button
@@ -78,7 +103,7 @@ export function InsightCard() {
             cursor: "pointer",
           }}
         >
-          See full breakdown
+          See what&apos;s being built
         </button>
         <button
           type="button"
@@ -94,7 +119,7 @@ export function InsightCard() {
             cursor: "pointer",
           }}
         >
-          Send to my partner
+          Talk to Michelle
         </button>
       </div>
     </section>

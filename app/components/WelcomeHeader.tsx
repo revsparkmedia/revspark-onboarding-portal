@@ -7,7 +7,7 @@ export function WelcomeHeader() {
       }}
     >
       <div className="eyebrow" style={{ marginBottom: "24px" }}>
-        YOUR PORTAL
+        YOUR LAUNCH
       </div>
       <h1
         style={{
@@ -20,7 +20,7 @@ export function WelcomeHeader() {
           margin: 0,
         }}
       >
-        Welcome back, <em className="fraunces-em">Gameday Men&apos;s Health</em>
+        Welcome aboard, <em className="fraunces-em">Gameday Men&apos;s Health</em>
       </h1>
       <p
         style={{
@@ -32,7 +32,7 @@ export function WelcomeHeader() {
           lineHeight: 1.5,
         }}
       >
-        Plano, TX. Live since March 2026.
+        Plano, TX. 3 days until your ads go live.
       </p>
     </section>
   );
