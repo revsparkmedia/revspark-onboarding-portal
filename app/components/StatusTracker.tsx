@@ -58,7 +58,7 @@ export function StatusTracker({ currentStage, dayOfTen }: { currentStage: Onboar
           })}
         </div>
         <p className="text-base text-[var(--color-text-secondary)] text-center">
-          Day {dayOfTen} of 10. Your campaigns are being built. Final review opens in {Math.max(0, 8 - dayOfTen)} days.
+          Day {dayOfTen} of 10. Your campaigns are built. Launch day is {Math.max(0, 10 - dayOfTen)} days away.
         </p>
       </div>
 
