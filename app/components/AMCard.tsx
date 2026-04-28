@@ -1,185 +1,47 @@
-import Image from "next/image";
+'use client';
+import Image from 'next/image';
+import { useState } from 'react';
 
-const BADGES = [
-  "RESPONDS IN UNDER 2 HOURS",
-  "WEEKLY 1:1 EVERY THURSDAY",
-  "DIRECT SLACK ACCESS",
-];
+export function AMCard({ am }: { am: { name: string; title: string; bio: string; photoUrl: string } }) {
+  const [bookingClicked, setBookingClicked] = useState(false);
 
-export function AMCard() {
   return (
-    <section
-      className="glass-card"
-      style={{
-        marginTop: "60px",
-        padding: "clamp(24px, 4vw, 40px)",
-        display: "grid",
-        gridTemplateColumns: "minmax(0, 1fr)",
-        gap: "32px",
-      }}
-    >
-      <div
-        style={{
-          display: "grid",
-          gap: "32px",
-          gridTemplateColumns: "minmax(0, 1fr)",
-        }}
-        className="md:grid md:grid-cols-[35%_65%]"
-      >
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            gap: "16px",
-            justifyContent: "flex-start",
-          }}
-        >
-          <div
-            style={{
-              width: "96px",
-              height: "96px",
-              borderRadius: "9999px",
-              overflow: "hidden",
-              position: "relative",
-              boxShadow:
-                "0 0 0 2px rgba(45, 212, 191, 0.3), 0 0 24px rgba(45, 212, 191, 0.2)",
-              flexShrink: 0,
-            }}
-          >
-            <Image
-              src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=200&h=200&fit=crop&crop=face"
-              alt="Michelle Carlson"
-              fill
-              sizes="96px"
-              style={{ objectFit: "cover" }}
-            />
-          </div>
-          <div
-            style={{
-              display: "inline-flex",
-              alignItems: "center",
-              gap: "8px",
-            }}
-          >
-            <span
-              className="online-dot"
-              style={{
-                width: "8px",
-                height: "8px",
-                borderRadius: "9999px",
-                background: "var(--teal)",
-                display: "inline-block",
-              }}
-            />
-            <span
-              style={{
-                fontFamily: "var(--font-mono)",
-                fontSize: "11px",
-                letterSpacing: "0.15em",
-                color: "var(--text-secondary)",
-                textTransform: "uppercase",
-              }}
-            >
-              Available now
-            </span>
+    <section className="brand-card-elevated p-8 md:p-10">
+      <div className="flex flex-col md:flex-row gap-8">
+        <div className="flex-shrink-0 flex flex-col items-center md:items-start">
+          <Image
+            src={am.photoUrl} alt={am.name}
+            width={96} height={96} unoptimized
+            className="rounded-full ring-2 ring-[var(--color-orange)] ring-offset-4 ring-offset-white"
+          />
+          <div className="mt-3 flex items-center gap-2">
+            <span className="w-2 h-2 rounded-full bg-green-500" />
+            <span className="text-xs text-[var(--color-text-muted)]">Available now</span>
           </div>
         </div>
-
-        <div>
-          <div className="eyebrow">YOUR ACCOUNT MANAGER</div>
-          <h3
-            style={{
-              marginTop: "16px",
-              fontFamily: "var(--font-sans)",
-              fontWeight: 600,
-              fontSize: "24px",
-              color: "var(--text-primary)",
-              lineHeight: 1.2,
-            }}
-          >
-            Michelle Carlson . Your Launch Lead
-          </h3>
-          <p
-            style={{
-              marginTop: "16px",
-              fontFamily: "var(--font-italic), Georgia, serif",
-              fontStyle: "italic",
-              fontSize: "18px",
-              color: "var(--text-secondary)",
-              lineHeight: 1.4,
-              maxWidth: "560px",
-            }}
-          >
-            Account manager for franchise accounts. Has personally launched 40+ men&apos;s health
-            locations on time and on budget.
+        <div className="flex-1">
+          <p className="eyebrow mb-3">YOUR ACCOUNT MANAGER</p>
+          <h2 className="text-2xl font-bold text-[var(--color-text-primary)]">
+            {am.name} <span className="text-[var(--color-text-muted)] font-medium">. {am.title}</span>
+          </h2>
+          <p className="mt-3 text-base text-[var(--color-text-secondary)] leading-relaxed max-w-xl">
+            {am.bio}
           </p>
-
-          <div
-            style={{
-              marginTop: "24px",
-              display: "flex",
-              flexWrap: "wrap",
-              gap: "8px",
-            }}
-          >
-            {BADGES.map((b) => (
-              <span
-                key={b}
-                style={{
-                  fontFamily: "var(--font-mono)",
-                  fontSize: "11px",
-                  letterSpacing: "0.12em",
-                  color: "var(--text-secondary)",
-                  textTransform: "uppercase",
-                  padding: "6px 12px",
-                  border: "1px solid var(--border-hairline)",
-                  borderRadius: "9999px",
-                }}
-              >
-                {b}
+          <div className="mt-5 flex flex-wrap gap-2">
+            {['RESPONDS IN UNDER 2 HOURS', 'WEEKLY 1:1 EVERY THURSDAY', 'DIRECT SLACK ACCESS'].map(badge => (
+              <span key={badge} className="text-[10px] font-semibold tracking-[0.1em] px-3 py-1.5 border border-[var(--color-border-hairline)] rounded-full text-[var(--color-text-secondary)]">
+                {badge}
               </span>
             ))}
           </div>
-
-          <div
-            style={{
-              marginTop: "32px",
-              display: "flex",
-              flexWrap: "wrap",
-              gap: "12px",
-            }}
-          >
+          <div className="mt-6 flex flex-col md:flex-row gap-3">
             <button
-              type="button"
-              style={{
-                background: "var(--teal)",
-                color: "#0A0E0D",
-                fontFamily: "var(--font-sans)",
-                fontWeight: 500,
-                fontSize: "14px",
-                padding: "10px 20px",
-                borderRadius: "9999px",
-                border: "none",
-                cursor: "pointer",
-              }}
+              onClick={() => setBookingClicked(true)}
+              className="px-5 py-2.5 bg-[var(--color-orange)] hover:bg-[var(--color-orange-hover)] text-white rounded-full text-sm font-semibold transition"
             >
-              Book a call
+              {bookingClicked ? 'Calendar opening...' : 'Book a call'}
             </button>
-            <button
-              type="button"
-              style={{
-                background: "transparent",
-                color: "var(--text-primary)",
-                fontFamily: "var(--font-sans)",
-                fontWeight: 500,
-                fontSize: "14px",
-                padding: "10px 20px",
-                borderRadius: "9999px",
-                border: "1px solid var(--border-hairline)",
-                cursor: "pointer",
-              }}
-            >
+            <button className="px-5 py-2.5 bg-white border border-[var(--color-border-strong)] hover:border-[var(--color-text-primary)] text-[var(--color-text-primary)] rounded-full text-sm font-semibold transition">
               Send a message
             </button>
           </div>

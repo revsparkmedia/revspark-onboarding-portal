@@ -1,73 +1,51 @@
 @import "tailwindcss";
 
-:root {
-  --bg-base: #0A0E0D;
-  --bg-elevated: #0F1413;
-  --bg-glass: rgba(255, 255, 255, 0.03);
+@theme {
+  /* RevSpark Brand Tokens — from official Brand Guidelines */
+  --color-white: #FFFFFF;
+  --color-black: #000000;
+  --color-orange: #FE8200;
+  --color-orange-hover: #E57500;
+  --color-orange-glow: rgba(254, 130, 0, 0.12);
+  --color-orange-tint: rgba(254, 130, 0, 0.08);
 
-  --border-hairline: rgba(255, 255, 255, 0.08);
-  --border-emphasis: rgba(45, 212, 191, 0.3);
+  --color-cloud: #EDEFF7;
+  --color-smoke: #D3D6E0;
+  --color-steel: #BCBFCC;
+  --color-space: #9DA2B3;
+  --color-graphite: #6E7180;
+  --color-arsenic: #40424D;
+  --color-phantom: #1E1E24;
 
-  --text-primary: #F5F7F6;
-  --text-secondary: rgba(245, 247, 246, 0.7);
-  --text-muted: rgba(245, 247, 246, 0.5);
+  --color-bg-base: var(--color-white);
+  --color-bg-elevated: #FAFBFC;
+  --color-bg-surface: var(--color-cloud);
 
-  --teal: #2DD4BF;
-  --teal-glow: rgba(45, 212, 191, 0.4);
-  --amber: #F59E0B;
-  --amber-glow: rgba(245, 158, 11, 0.4);
-  --blue: #3B82F6;
-  --blue-glow: rgba(59, 130, 246, 0.4);
-}
+  --color-text-primary: var(--color-phantom);
+  --color-text-secondary: var(--color-arsenic);
+  --color-text-muted: var(--color-graphite);
 
-@theme inline {
-  --color-bg-base: var(--bg-base);
-  --color-bg-elevated: var(--bg-elevated);
-  --color-bg-glass: var(--bg-glass);
-  --color-border-hairline: var(--border-hairline);
-  --color-border-emphasis: var(--border-emphasis);
-  --color-text-primary: var(--text-primary);
-  --color-text-secondary: var(--text-secondary);
-  --color-text-muted: var(--text-muted);
-  --color-teal: var(--teal);
-  --color-amber: var(--amber);
-  --color-blue: var(--blue);
-  --font-sans: var(--font-sans);
-  --font-mono: var(--font-mono);
-  --font-italic: var(--font-italic);
+  --color-border-hairline: var(--color-smoke);
+  --color-border-strong: var(--color-steel);
+
+  --font-sans: 'Manrope', system-ui, -apple-system, sans-serif;
 }
 
 html, body {
-  background: var(--bg-base);
-  color: var(--text-primary);
+  background: var(--color-bg-base);
+  color: var(--color-text-primary);
   font-family: var(--font-sans);
-  font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+  font-feature-settings: 'cv11', 'ss01';
   -webkit-font-smoothing: antialiased;
 }
 
-.grain-overlay {
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  opacity: 0.04;
-  z-index: 1;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='0.9' numOctaves='3' /%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' /%3E%3C/svg%3E");
-}
-
-.glass-card {
-  background: var(--bg-glass);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid var(--border-hairline);
-  border-radius: 16px;
-}
-
 .eyebrow {
-  font-family: var(--font-mono);
+  font-family: var(--font-sans);
+  font-weight: 600;
   font-size: 11px;
-  letter-spacing: 0.2em;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--teal);
+  color: var(--color-orange);
   display: inline-flex;
   align-items: center;
   gap: 12px;
@@ -78,30 +56,26 @@ html, body {
   display: block;
   width: 24px;
   height: 1px;
-  background: var(--teal);
+  background: var(--color-orange);
 }
 
-@keyframes pulse-teal {
-  0%, 100% { box-shadow: 0 0 0 0 var(--teal-glow); }
-  50% { box-shadow: 0 0 0 8px transparent; }
+.brand-card {
+  background: var(--color-white);
+  border: 1px solid var(--color-border-hairline);
+  border-radius: 12px;
 }
 
-.dot-pulse {
-  animation: pulse-teal 2s ease-in-out infinite;
+.brand-card-elevated {
+  background: var(--color-white);
+  border: 1px solid var(--color-border-hairline);
+  border-radius: 16px;
+  box-shadow: 0 1px 2px rgba(30, 30, 36, 0.04), 0 4px 12px rgba(30, 30, 36, 0.04);
 }
 
-@keyframes online-pulse {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(45, 212, 191, 0.5); opacity: 1; }
-  50% { box-shadow: 0 0 0 6px transparent; opacity: 0.7; }
+@keyframes pulse-orange {
+  0%, 100% { box-shadow: 0 0 0 0 var(--color-orange-glow); }
+  50% { box-shadow: 0 0 0 10px transparent; }
 }
 
-.online-dot {
-  animation: online-pulse 2s ease-in-out infinite;
-}
-
-.fraunces-em {
-  font-family: var(--font-italic), Georgia, serif;
-  font-style: italic;
-  color: var(--teal);
-  font-weight: 400;
-}
+.dot-pulse { animation: pulse-orange 2s ease-in-out infinite; }
+.tabular { font-variant-numeric: tabular-nums; font-feature-settings: 'tnum'; }

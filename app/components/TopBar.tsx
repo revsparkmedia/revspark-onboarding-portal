@@ -1,97 +1,25 @@
-import Image from "next/image";
+import Image from 'next/image';
 
-export function TopBar() {
+export function TopBar({ amName }: { amName: string }) {
   return (
-    <header
-      className="sticky top-0 z-30 w-full"
-      style={{
-        backgroundColor: "rgba(10, 14, 13, 0.85)",
-        backdropFilter: "blur(20px)",
-        WebkitBackdropFilter: "blur(20px)",
-        borderBottom: "1px solid var(--border-hairline)",
-      }}
-    >
-      <div
-        className="flex items-center justify-between"
-        style={{ padding: "16px 32px" }}
-      >
-        <div className="flex items-center">
-          <span
-            style={{
-              fontFamily: "var(--font-sans)",
-              fontWeight: 800,
-              fontSize: "18px",
-              letterSpacing: "-0.01em",
-              color: "var(--text-primary)",
-              position: "relative",
-              display: "inline-block",
-            }}
-          >
-            <span style={{ position: "relative", display: "inline-block" }}>
-              RevSpark
-              <span
-                aria-hidden
-                style={{
-                  position: "absolute",
-                  left: "33%",
-                  width: "12%",
-                  height: "2px",
-                  bottom: "-2px",
-                  background: "var(--teal)",
-                  borderRadius: "1px",
-                }}
-              />
-            </span>
-          </span>
-        </div>
-
-        <div
-          className="flex items-center"
-          style={{
-            gap: "8px",
-            padding: "4px 10px 4px 4px",
-            border: "1px solid var(--border-hairline)",
-            borderRadius: "9999px",
-          }}
-        >
-          <div
-            style={{
-              width: "32px",
-              height: "32px",
-              borderRadius: "9999px",
-              overflow: "hidden",
-              position: "relative",
-              flexShrink: 0,
-            }}
-          >
+    <header className="sticky top-0 z-50 bg-white/95 backdrop-blur border-b border-[var(--color-border-hairline)]">
+      <div className="max-w-6xl mx-auto px-6 md:px-8 py-4 flex items-center justify-between">
+        <Image
+          src="https://revsparkmedia.com/wp-content/uploads/2025/11/Logo-1-e1763470654872.jpg"
+          alt="RevSpark Media"
+          width={140} height={32} unoptimized
+          className="h-8 w-auto"
+        />
+        <div className="flex items-center gap-3 px-4 py-2 rounded-full border border-[var(--color-border-hairline)]">
+          <div className="relative">
             <Image
-              src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=200&h=200&fit=crop&crop=face"
-              alt="Michelle"
-              fill
-              sizes="32px"
-              style={{ objectFit: "cover" }}
+              src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=80&h=80&fit=crop&crop=face"
+              alt={amName} width={28} height={28} unoptimized
+              className="rounded-full"
             />
+            <span className="absolute -bottom-0.5 -right-0.5 w-2.5 h-2.5 rounded-full bg-green-500 border-2 border-white" />
           </div>
-          <span
-            style={{
-              fontFamily: "var(--font-sans)",
-              fontWeight: 500,
-              fontSize: "13px",
-              color: "var(--text-primary)",
-            }}
-          >
-            Michelle
-          </span>
-          <span
-            className="online-dot"
-            style={{
-              width: "8px",
-              height: "8px",
-              borderRadius: "9999px",
-              background: "var(--teal)",
-              display: "inline-block",
-            }}
-          />
+          <span className="text-sm font-semibold text-[var(--color-text-primary)]">{amName.split(' ')[0]}</span>
         </div>
       </div>
     </header>

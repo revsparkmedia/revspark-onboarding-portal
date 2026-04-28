@@ -1,25 +1,7 @@
 export function Footer() {
   return (
-    <footer
-      style={{
-        marginTop: "80px",
-        paddingTop: "32px",
-        paddingBottom: "48px",
-        borderTop: "1px solid var(--border-hairline)",
-        textAlign: "center",
-        position: "relative",
-        zIndex: 10,
-      }}
-    >
-      <p
-        style={{
-          fontFamily: "var(--font-sans)",
-          fontWeight: 400,
-          fontSize: "14px",
-          color: "var(--text-muted)",
-          margin: 0,
-        }}
-      >
+    <footer className="border-t border-[var(--color-border-hairline)] mt-20 pt-12 pb-12">
+      <p className="text-center text-sm text-[var(--color-text-muted)]">
         RevSpark Media . Built for franchise.
       </p>
     </footer>

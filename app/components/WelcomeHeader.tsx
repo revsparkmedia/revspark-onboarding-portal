@@ -1,38 +1,15 @@
-export function WelcomeHeader() {
+export function WelcomeHeader({ clinicName, city, state, daysUntilLive }: {
+  clinicName: string; city: string; state: string; daysUntilLive: number;
+}) {
   return (
-    <section
-      style={{
-        paddingTop: "80px",
-        paddingBottom: "48px",
-      }}
-    >
-      <div className="eyebrow" style={{ marginBottom: "24px" }}>
-        YOUR LAUNCH
-      </div>
-      <h1
-        style={{
-          fontFamily: "var(--font-sans)",
-          fontWeight: 800,
-          letterSpacing: "-0.035em",
-          lineHeight: 1.05,
-          color: "var(--text-primary)",
-          fontSize: "clamp(36px, 6vw, 56px)",
-          margin: 0,
-        }}
-      >
-        Welcome aboard, <em className="fraunces-em">Gameday Men&apos;s Health</em>
+    <section className="pt-16 md:pt-20 pb-10 md:pb-12">
+      <p className="eyebrow mb-6">YOUR LAUNCH</p>
+      <h1 className="text-[44px] md:text-[64px] font-extrabold leading-[1.05] tracking-[-0.025em] text-[var(--color-text-primary)]">
+        Welcome aboard,{' '}
+        <span className="text-[var(--color-orange)]">{clinicName}</span>
       </h1>
-      <p
-        style={{
-          marginTop: "20px",
-          fontFamily: "var(--font-sans)",
-          fontWeight: 400,
-          fontSize: "18px",
-          color: "var(--text-secondary)",
-          lineHeight: 1.5,
-        }}
-      >
-        Plano, TX. 3 days until your ads go live.
+      <p className="mt-4 text-lg text-[var(--color-text-secondary)]">
+        {city}, {state}. {daysUntilLive} days until your ads go live.
       </p>
     </section>
   );

@@ -1,302 +1,96 @@
-"use client";
+'use client';
+import { useState } from 'react';
+import { Check, ChevronDown } from 'lucide-react';
+import type { OnboardingStage } from '@/app/data/zees';
 
-import { useState } from "react";
-import { Check, ChevronDown } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
-
-type StageState = "complete" | "current" | "future";
-
-const STAGES: { id: number; label: string; state: StageState }[] = [
-  { id: 1, label: "WELCOME ABOARD", state: "complete" },
-  { id: 2, label: "BRAND INTAKE", state: "complete" },
-  { id: 3, label: "BUILDING YOUR CAMPAIGNS", state: "current" },
-  { id: 4, label: "FINAL REVIEW", state: "future" },
-  { id: 5, label: "GO LIVE", state: "future" },
+const STAGES: Array<{ id: number; key: OnboardingStage; label: string }> = [
+  { id: 1, key: 'welcome_aboard', label: 'WELCOME ABOARD' },
+  { id: 2, key: 'brand_intake', label: 'BRAND INTAKE' },
+  { id: 3, key: 'building_campaigns', label: 'BUILDING YOUR CAMPAIGNS' },
+  { id: 4, key: 'final_review', label: 'FINAL REVIEW' },
+  { id: 5, key: 'go_live', label: 'GO LIVE' },
 ];
 
-function dotForState(state: StageState) {
-  if (state === "complete") {
-    return (
-      <div
-        style={{
-          width: "12px",
-          height: "12px",
-          borderRadius: "9999px",
-          background: "var(--teal)",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          flexShrink: 0,
-        }}
-      >
-        <Check size={8} strokeWidth={4} color="#0A0E0D" />
-      </div>
-    );
-  }
-  if (state === "current") {
-    return (
-      <div
-        className="dot-pulse"
-        style={{
-          width: "14px",
-          height: "14px",
-          borderRadius: "9999px",
-          background: "var(--teal)",
-          flexShrink: 0,
-        }}
-      />
-    );
-  }
-  return (
-    <div
-      style={{
-        width: "12px",
-        height: "12px",
-        borderRadius: "9999px",
-        background: "transparent",
-        border: "1px solid var(--border-hairline)",
-        flexShrink: 0,
-      }}
-    />
-  );
+function getStageState(stageKey: OnboardingStage, current: OnboardingStage): 'complete' | 'current' | 'future' {
+  const order = STAGES.map(s => s.key);
+  const stageIdx = order.indexOf(stageKey);
+  const currentIdx = order.indexOf(current);
+  if (stageIdx < currentIdx) return 'complete';
+  if (stageIdx === currentIdx) return 'current';
+  return 'future';
 }
 
-function labelColor(state: StageState) {
-  if (state === "current") return "var(--teal)";
-  if (state === "complete") return "var(--text-secondary)";
-  return "var(--text-muted)";
-}
-
-export function StatusTracker() {
-  const [open, setOpen] = useState(false);
-  const current = STAGES.find((s) => s.state === "current");
+export function StatusTracker({ currentStage, dayOfTen }: { currentStage: OnboardingStage; dayOfTen: number }) {
+  const [expanded, setExpanded] = useState(false);
+  const completedCount = STAGES.filter(s => getStageState(s.key, currentStage) === 'complete').length;
+  const progressPct = ((completedCount + 0.5) / STAGES.length) * 100;
+  const currentLabel = STAGES.find(s => s.key === currentStage)?.label || '';
 
   return (
-    <section style={{ paddingBottom: "8px" }}>
-      <div className="hidden md:block">
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(5, 1fr)",
-            alignItems: "start",
-            gap: 0,
-            position: "relative",
-          }}
-        >
+    <section className="mb-12">
+      <div className="hidden md:block brand-card-elevated p-8">
+        <div className="flex items-center justify-between mb-6">
           {STAGES.map((stage, i) => {
-            const next = STAGES[i + 1];
-            const lineColor =
-              stage.state === "complete" && next && next.state === "complete"
-                ? "var(--teal)"
-                : stage.state === "complete" && next && next.state === "current"
-                ? "var(--teal)"
-                : "var(--border-hairline)";
+            const state = getStageState(stage.key, currentStage);
             return (
-              <div
-                key={stage.id}
-                style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  alignItems: "center",
-                  position: "relative",
-                }}
-              >
-                <div
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    width: "100%",
-                    justifyContent: "center",
-                    position: "relative",
-                    height: "16px",
-                  }}
-                >
-                  {i > 0 && (
-                    <div
-                      aria-hidden
-                      style={{
-                        position: "absolute",
-                        left: 0,
-                        right: "50%",
-                        top: "50%",
-                        height: "1px",
-                        background:
-                          STAGES[i - 1].state === "complete"
-                            ? "var(--teal)"
-                            : "var(--border-hairline)",
-                        transform: "translateY(-50%)",
-                      }}
-                    />
-                  )}
-                  {i < STAGES.length - 1 && (
-                    <div
-                      aria-hidden
-                      style={{
-                        position: "absolute",
-                        left: "50%",
-                        right: 0,
-                        top: "50%",
-                        height: "1px",
-                        background: lineColor,
-                        transform: "translateY(-50%)",
-                      }}
-                    />
-                  )}
-                  <div style={{ position: "relative", zIndex: 1 }}>
-                    {dotForState(stage.state)}
+              <div key={stage.id} className="flex items-center flex-1 last:flex-initial">
+                <div className="flex flex-col items-center gap-3">
+                  <div className={`relative flex items-center justify-center rounded-full
+                    ${state === 'complete' ? 'w-3 h-3 bg-[var(--color-orange)]' : ''}
+                    ${state === 'current' ? 'w-3.5 h-3.5 bg-[var(--color-orange)] dot-pulse' : ''}
+                    ${state === 'future' ? 'w-3 h-3 border-2 border-[var(--color-border-strong)] bg-white' : ''}
+                  `}>
+                    {state === 'complete' && <Check className="w-2 h-2 text-white" strokeWidth={4} />}
                   </div>
+                  <span className={`text-[10px] font-semibold tracking-[0.15em] whitespace-nowrap
+                    ${state === 'current' ? 'text-[var(--color-orange)]' : ''}
+                    ${state === 'complete' ? 'text-[var(--color-text-secondary)]' : ''}
+                    ${state === 'future' ? 'text-[var(--color-text-muted)]' : ''}
+                  `}>{stage.label}</span>
                 </div>
-                <div
-                  style={{
-                    marginTop: "16px",
-                    fontFamily: "var(--font-mono)",
-                    fontSize: "11px",
-                    letterSpacing: "0.15em",
-                    textTransform: "uppercase",
-                    color: labelColor(stage.state),
-                    textAlign: "center",
-                    lineHeight: 1.3,
-                  }}
-                >
-                  {stage.label}
-                </div>
+                {i < STAGES.length - 1 && (
+                  <div className={`h-px flex-1 mx-3 -mt-6
+                    ${getStageState(STAGES[i + 1].key, currentStage) !== 'future' || state === 'current' ? 'bg-[var(--color-orange)]' : 'bg-[var(--color-border-hairline)]'}
+                  `} />
+                )}
               </div>
             );
           })}
         </div>
-
-        <p
-          style={{
-            marginTop: "32px",
-            fontFamily: "var(--font-sans)",
-            fontWeight: 400,
-            fontSize: "16px",
-            color: "var(--text-secondary)",
-            lineHeight: 1.5,
-          }}
-        >
-          Day 7 of 10. Your campaigns are being built. Final review opens in 2 days.
+        <p className="text-base text-[var(--color-text-secondary)] text-center">
+          Day {dayOfTen} of 10. Your campaigns are being built. Final review opens in {Math.max(0, 8 - dayOfTen)} days.
         </p>
       </div>
 
-      <div className="md:hidden">
-        <button
-          type="button"
-          onClick={() => setOpen((v) => !v)}
-          className="glass-card"
-          style={{
-            width: "100%",
-            padding: "20px",
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "stretch",
-            gap: "16px",
-            cursor: "pointer",
-            textAlign: "left",
-            color: "var(--text-primary)",
-          }}
-        >
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "space-between",
-              gap: "12px",
-            }}
-          >
-            <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
-              {current && dotForState(current.state)}
-              <span
-                style={{
-                  fontFamily: "var(--font-mono)",
-                  fontSize: "11px",
-                  letterSpacing: "0.15em",
-                  textTransform: "uppercase",
-                  color: "var(--teal)",
-                }}
-              >
-                {current?.label}
-              </span>
-            </div>
-            <motion.div animate={{ rotate: open ? 180 : 0 }} transition={{ duration: 0.2 }}>
-              <ChevronDown size={16} color="rgba(245,247,246,0.5)" />
-            </motion.div>
-          </div>
-
-          <div
-            style={{
-              width: "100%",
-              height: "4px",
-              borderRadius: "9999px",
-              background: "var(--border-hairline)",
-              overflow: "hidden",
-            }}
-          >
-            <div
-              style={{
-                width: "60%",
-                height: "100%",
-                background: "var(--teal)",
-              }}
-            />
-          </div>
-
-          <AnimatePresence initial={false}>
-            {open && (
-              <motion.ul
-                initial={{ height: 0, opacity: 0 }}
-                animate={{ height: "auto", opacity: 1 }}
-                exit={{ height: 0, opacity: 0 }}
-                transition={{ duration: 0.25 }}
-                style={{
-                  listStyle: "none",
-                  padding: 0,
-                  margin: 0,
-                  overflow: "hidden",
-                  display: "flex",
-                  flexDirection: "column",
-                  gap: "16px",
-                }}
-              >
-                {STAGES.map((stage) => (
-                  <li
-                    key={stage.id}
-                    style={{
-                      display: "flex",
-                      alignItems: "center",
-                      gap: "12px",
-                    }}
-                  >
-                    {dotForState(stage.state)}
-                    <span
-                      style={{
-                        fontFamily: "var(--font-mono)",
-                        fontSize: "11px",
-                        letterSpacing: "0.15em",
-                        textTransform: "uppercase",
-                        color: labelColor(stage.state),
-                      }}
-                    >
-                      {stage.label}
-                    </span>
-                  </li>
-                ))}
-              </motion.ul>
-            )}
-          </AnimatePresence>
+      <div className="md:hidden brand-card-elevated p-6">
+        <div className="flex items-center gap-3 mb-3">
+          <div className="w-3.5 h-3.5 rounded-full bg-[var(--color-orange)] dot-pulse" />
+          <span className="text-[10px] font-semibold tracking-[0.15em] text-[var(--color-orange)]">{currentLabel}</span>
+        </div>
+        <div className="h-1 bg-[var(--color-cloud)] rounded-full overflow-hidden mb-3">
+          <div className="h-full bg-[var(--color-orange)] rounded-full transition-all" style={{ width: `${progressPct}%` }} />
+        </div>
+        <button onClick={() => setExpanded(!expanded)} className="flex items-center gap-1 text-xs text-[var(--color-text-muted)]">
+          <span>Day {dayOfTen} of 10</span>
+          <ChevronDown className={`w-3 h-3 transition-transform ${expanded ? 'rotate-180' : ''}`} />
         </button>
-        <p
-          style={{
-            marginTop: "20px",
-            fontFamily: "var(--font-sans)",
-            fontWeight: 400,
-            fontSize: "15px",
-            color: "var(--text-secondary)",
-            lineHeight: 1.5,
-          }}
-        >
-          Day 7 of 10. Your campaigns are being built. Final review opens in 2 days.
-        </p>
+        {expanded && (
+          <div className="mt-4 space-y-2">
+            {STAGES.map(s => {
+              const state = getStageState(s.key, currentStage);
+              return (
+                <div key={s.id} className="flex items-center gap-2 text-xs">
+                  <div className={`w-2 h-2 rounded-full
+                    ${state === 'complete' ? 'bg-[var(--color-orange)]' : ''}
+                    ${state === 'current' ? 'bg-[var(--color-orange)]' : ''}
+                    ${state === 'future' ? 'border border-[var(--color-border-strong)]' : ''}
+                  `} />
+                  <span className="font-semibold tracking-[0.1em] text-[10px] text-[var(--color-text-secondary)]">{s.label}</span>
+                </div>
+              );
+            })}
+          </div>
+        )}
       </div>
     </section>
   );
