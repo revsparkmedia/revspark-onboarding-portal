@@ -79,3 +79,104 @@ html, body {
 
 .dot-pulse { animation: pulse-orange 2s ease-in-out infinite; }
 .tabular { font-variant-numeric: tabular-nums; font-feature-settings: 'tnum'; }
+
+/* Admin surface tokens (internal tool styling) */
+@theme {
+  --color-admin-bg: var(--color-cloud);
+  --color-admin-surface: var(--color-white);
+  --color-admin-sidebar: var(--color-phantom);
+  --color-admin-sidebar-hover: var(--color-arsenic);
+  --color-admin-accent: #4A90E2;
+  --color-admin-accent-hover: #3A7BC8;
+  --color-admin-accent-tint: rgba(74, 144, 226, 0.08);
+}
+
+.admin-card {
+  background: var(--color-admin-surface);
+  border: 1px solid var(--color-border-hairline);
+  border-radius: 8px;
+}
+
+.admin-pill-mondaySource {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: 9px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  padding: 2px 8px;
+  border-radius: 12px;
+  background: rgba(74, 144, 226, 0.1);
+  color: var(--color-admin-accent);
+  border: 1px solid rgba(74, 144, 226, 0.3);
+}
+
+.admin-pill-portalSource {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: 9px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  padding: 2px 8px;
+  border-radius: 12px;
+  background: rgba(254, 130, 0, 0.08);
+  color: var(--color-orange);
+  border: 1px solid rgba(254, 130, 0, 0.3);
+}
+
+.monday-pill {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: 12px;
+  padding: 6px 12px;
+  border-radius: 4px;
+  color: white;
+  white-space: nowrap;
+}
+
+/* Data source overlay (toggled via body class) */
+.source-label-monday,
+.source-label-portal {
+  display: none;
+}
+
+body.show-source-overlay .source-label-monday {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: 9px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  padding: 2px 8px;
+  border-radius: 12px;
+  background: rgba(74, 144, 226, 0.1);
+  color: #4A90E2;
+  border: 1px solid rgba(74, 144, 226, 0.3);
+  margin-left: 12px;
+  vertical-align: middle;
+}
+
+body.show-source-overlay .source-label-portal {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: 9px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  padding: 2px 8px;
+  border-radius: 12px;
+  background: rgba(254, 130, 0, 0.08);
+  color: var(--color-orange);
+  border: 1px solid rgba(254, 130, 0, 0.3);
+  margin-left: 12px;
+  vertical-align: middle;
+}

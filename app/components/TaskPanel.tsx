@@ -16,7 +16,7 @@ export function TaskPanel({ tasks }: { tasks: ZeeData['tasks'] }) {
 
   return (
     <section>
-      <p className="eyebrow mb-6">WHAT YOU CAN DO NOW</p>
+      <p className="eyebrow mb-6">WHAT YOU CAN DO NOW <span className="source-label-monday">FROM MONDAY</span></p>
       <div className="space-y-3">
         {tasks.map(task => {
           const status = statuses[task.id];

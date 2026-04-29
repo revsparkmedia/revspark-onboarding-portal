@@ -17,7 +17,7 @@ const LABEL: Record<BuildItemStatus, string> = {
 export function BuildStatus({ items }: { items: ZeeData['buildItems'] }) {
   return (
     <section id="build-status">
-      <p className="eyebrow mb-6">BEING BUILT THIS WEEK</p>
+      <p className="eyebrow mb-6">BEING BUILT THIS WEEK <span className="source-label-monday">FROM MONDAY</span></p>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
         {items.map(item => (
           <div key={item.id} className="brand-card p-5">

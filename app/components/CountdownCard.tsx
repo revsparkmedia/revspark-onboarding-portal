@@ -11,7 +11,7 @@ export function CountdownCard({ bigNumber, bigNumberLabel, bodyText, dayOfTen, a
     <>
       <section className="brand-card-elevated p-10 md:p-12 text-center">
         <div className="flex items-center justify-between mb-8">
-          <p className="eyebrow">LAUNCH STATUS</p>
+          <p className="eyebrow">LAUNCH STATUS <span className="source-label-monday">FROM MONDAY</span></p>
           <span className="text-xs font-semibold tracking-[0.15em] text-[var(--color-text-muted)]">
             DAY {dayOfTen} OF 10
           </span>

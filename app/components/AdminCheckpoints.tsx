@@ -6,7 +6,7 @@ export function AdminCheckpoints({ checkpoints }: { checkpoints: ZeeData['adminC
   return (
     <section>
       <div className="flex items-baseline justify-between mb-6">
-        <p className="eyebrow">CORPORATE ACCESS CHECKLIST</p>
+        <p className="eyebrow">CORPORATE ACCESS CHECKLIST <span className="source-label-portal">FROM PORTAL ADMIN</span></p>
         <span className="text-xs font-semibold text-[var(--color-text-muted)]">
           {grantedCount} of {checkpoints.length} complete
         </span>
