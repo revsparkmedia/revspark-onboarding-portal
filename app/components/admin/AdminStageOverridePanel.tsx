@@ -3,10 +3,10 @@ import { useState } from 'react';
 import type { OnboardingStage } from '@/app/data/zees';
 
 const STAGES: Array<{ key: OnboardingStage; label: string }> = [
-  { key: 'welcome_aboard', label: 'Welcome Aboard' },
+  { key: 'kickoff_call_complete', label: 'Kickoff Call Complete' },
   { key: 'agency_change_submitted', label: 'Agency Change Submitted' },
   { key: 'corporate_access_granted', label: 'Corporate Access Granted' },
-  { key: 'campaigns_built', label: 'Campaigns Built' },
+  { key: 'revspark_setup_and_builds', label: 'RevSpark Setup & Builds' },
   { key: 'live', label: 'Live' },
 ];
 

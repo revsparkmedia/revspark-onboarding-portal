@@ -2,25 +2,25 @@ import { ExternalLink } from 'lucide-react';
 import type { ZeeData, OnboardingStage, BuildItemStatus } from '@/app/data/zees';
 
 const STAGE_LABELS: Record<OnboardingStage, string> = {
-  welcome_aboard: 'Welcome Aboard',
+  kickoff_call_complete: 'Kickoff Call Complete',
   agency_change_submitted: 'Agency Change Submitted',
   corporate_access_granted: 'Corporate Access Granted',
-  campaigns_built: 'Campaigns Built',
+  revspark_setup_and_builds: 'RevSpark Setup & Builds',
   live: 'Live',
 };
 
 const BUILD_LABEL: Record<BuildItemStatus, string> = {
   pending: 'Pending',
-  in_review: 'In Review',
-  ready: 'Ready',
-  live: 'Live',
+  in_progress: 'In Progress',
+  awaiting_launch: 'Awaiting Launch',
+  launched: 'Launched',
 };
 
 const BUILD_COLOR: Record<BuildItemStatus, string> = {
   pending: 'text-gray-600',
-  in_review: 'text-orange-600',
-  ready: 'text-blue-600',
-  live: 'text-green-600',
+  in_progress: 'text-orange-600',
+  awaiting_launch: 'text-blue-600',
+  launched: 'text-green-600',
 };
 
 export function AdminMondayPanel({ zee }: { zee: ZeeData }) {
@@ -43,7 +43,7 @@ export function AdminMondayPanel({ zee }: { zee: ZeeData }) {
 
       <div className="p-5 space-y-5 text-sm">
         <Field label="Stage" value={STAGE_LABELS[zee.launch.currentStage]} />
-        <Field label="Day of 10" value={`${zee.launch.dayOfTen} of 10`} />
+        <Field label="Day count" value={`${zee.launch.dayOfTotal} of ${zee.launch.totalDays}`} />
         <Field label="Target launch date" value={zee.launch.targetLaunchDate} />
 
         <div>

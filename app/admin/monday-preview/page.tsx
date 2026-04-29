@@ -2,26 +2,26 @@ import { Search, Filter, Plus, ChevronDown } from 'lucide-react';
 import { getAllZees, type OnboardingStage, type BuildItemStatus } from '@/app/data/zees';
 
 const STAGE_PILL: Record<OnboardingStage, string> = {
-  welcome_aboard: 'bg-gray-500',
+  kickoff_call_complete: 'bg-gray-500',
   agency_change_submitted: 'bg-blue-500',
   corporate_access_granted: 'bg-purple-500',
-  campaigns_built: 'bg-orange-500',
+  revspark_setup_and_builds: 'bg-orange-500',
   live: 'bg-green-500',
 };
 
 const STAGE_LABEL: Record<OnboardingStage, string> = {
-  welcome_aboard: 'Welcome Aboard',
+  kickoff_call_complete: 'Kickoff Call',
   agency_change_submitted: 'Agency Change',
   corporate_access_granted: 'Access Granted',
-  campaigns_built: 'Campaigns Built',
+  revspark_setup_and_builds: 'Setup & Builds',
   live: 'Live',
 };
 
 const BUILD_PILL: Record<BuildItemStatus, string> = {
   pending: 'bg-gray-400',
-  in_review: 'bg-orange-500',
-  ready: 'bg-blue-500',
-  live: 'bg-green-500',
+  in_progress: 'bg-orange-500',
+  awaiting_launch: 'bg-blue-500',
+  launched: 'bg-green-500',
 };
 
 export default function MondayPreviewPage() {
@@ -86,7 +86,7 @@ export default function MondayPreviewPage() {
               <div className="w-6 h-6 rounded-full bg-orange-500 text-white text-[10px] font-bold flex items-center justify-center">M</div>
               <span className="text-sm text-gray-700">{zee.am.name.split(' ')[0]}</span>
             </div>
-            <div className="flex items-center text-sm text-gray-700 tabular">{zee.launch.dayOfTen}/10</div>
+            <div className="flex items-center text-sm text-gray-700 tabular">{zee.launch.dayOfTotal}/{zee.launch.totalDays}</div>
             <div className="flex items-center text-sm text-gray-700">{zee.launch.targetLaunchDate}</div>
             <div className="flex items-center gap-1 flex-wrap">
               {zee.buildItems.map(b => (
@@ -119,7 +119,7 @@ export default function MondayPreviewPage() {
           <p className="text-xs font-semibold tracking-[0.15em] text-blue-900 mb-2">SOURCED FROM MONDAY</p>
           <ul className="text-sm text-blue-900 space-y-1">
             <li>{'\u00B7'} Stage progression</li>
-            <li>{'\u00B7'} Day of 10 (computed from start date)</li>
+            <li>{'\u00B7'} Day count (computed from start date)</li>
             <li>{'\u00B7'} Launch date</li>
             <li>{'\u00B7'} Tasks (subitems with completion status)</li>
             <li>{'\u00B7'} Build status per channel</li>

@@ -23,7 +23,7 @@ export default async function AdminZeeDetailPage({ params }: { params: Promise<{
             {zee.clinicName} <span className="text-[var(--color-text-muted)] font-medium">. {zee.city}, {zee.state}</span>
           </h1>
           <p className="mt-1 text-sm text-[var(--color-text-secondary)]">
-            Day {zee.launch.dayOfTen} of 10. Launch target: {zee.launch.targetLaunchDate}.
+            Day {zee.launch.dayOfTotal} of {zee.launch.totalDays}. Launch target: {zee.launch.targetLaunchDate}.
           </p>
         </div>
         <Link

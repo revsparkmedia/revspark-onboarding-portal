@@ -3,18 +3,18 @@ import { ArrowRight } from 'lucide-react';
 import { getAllZees, type OnboardingStage } from '@/app/data/zees';
 
 const STAGE_LABELS: Record<OnboardingStage, string> = {
-  welcome_aboard: 'Welcome Aboard',
+  kickoff_call_complete: 'Kickoff Call Complete',
   agency_change_submitted: 'Agency Change Submitted',
   corporate_access_granted: 'Corporate Access Granted',
-  campaigns_built: 'Campaigns Built',
+  revspark_setup_and_builds: 'RevSpark Setup & Builds',
   live: 'Live',
 };
 
 const STAGE_BADGE: Record<OnboardingStage, string> = {
-  welcome_aboard: 'bg-gray-100 text-gray-700',
+  kickoff_call_complete: 'bg-gray-100 text-gray-700',
   agency_change_submitted: 'bg-blue-50 text-blue-700',
   corporate_access_granted: 'bg-blue-50 text-blue-700',
-  campaigns_built: 'bg-orange-50 text-orange-700',
+  revspark_setup_and_builds: 'bg-orange-50 text-orange-700',
   live: 'bg-green-50 text-green-700',
 };
 
@@ -63,7 +63,7 @@ export default function AdminPreviewPage() {
                     </span>
                   </td>
                   <td className="px-5 py-4 text-sm tabular text-[var(--color-text-secondary)]">
-                    {zee.launch.dayOfTen} of 10
+                    {zee.launch.dayOfTotal} of {zee.launch.totalDays}
                   </td>
                   <td className="px-5 py-4 text-sm tabular text-[var(--color-text-secondary)]">
                     <span className={grantedCount === totalCount ? 'text-green-700 font-semibold' : 'text-[var(--color-text-secondary)]'}>

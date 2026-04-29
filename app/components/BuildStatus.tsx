@@ -2,16 +2,16 @@ import type { ZeeData, BuildItemStatus } from '@/app/data/zees';
 
 const STYLES: Record<BuildItemStatus, string> = {
   pending: 'border-[var(--color-border-strong)] text-[var(--color-text-muted)] bg-[var(--color-bg-elevated)]',
-  in_review: 'border-[var(--color-orange)] text-[var(--color-orange)] bg-[var(--color-orange-tint)]',
-  ready: 'border-[var(--color-graphite)] text-[var(--color-graphite)] bg-[var(--color-cloud)]',
-  live: 'border-green-600 text-green-700 bg-green-50',
+  in_progress: 'border-[var(--color-orange)] text-[var(--color-orange)] bg-[var(--color-orange-tint)]',
+  awaiting_launch: 'border-[var(--color-graphite)] text-[var(--color-graphite)] bg-[var(--color-cloud)]',
+  launched: 'border-green-600 text-green-700 bg-green-50',
 };
 
 const LABEL: Record<BuildItemStatus, string> = {
   pending: 'PENDING',
-  in_review: 'IN REVIEW',
-  ready: 'READY',
-  live: 'LIVE',
+  in_progress: 'IN PROGRESS',
+  awaiting_launch: 'AWAITING LAUNCH',
+  launched: 'LAUNCHED',
 };
 
 export function BuildStatus({ items }: { items: ZeeData['buildItems'] }) {
@@ -23,7 +23,7 @@ export function BuildStatus({ items }: { items: ZeeData['buildItems'] }) {
           <div key={item.id} className="brand-card p-5">
             <div className="flex justify-end mb-4">
               <span className={`inline-flex items-center gap-1.5 text-[10px] font-semibold tracking-[0.1em] px-2.5 py-1 rounded-full border ${STYLES[item.status]}`}>
-                {item.status === 'live' && <span className="w-1.5 h-1.5 rounded-full bg-green-600 dot-pulse" />}
+                {item.status === 'launched' && <span className="w-1.5 h-1.5 rounded-full bg-green-600 dot-pulse" />}
                 {LABEL[item.status]}
               </span>
             </div>

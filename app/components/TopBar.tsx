@@ -13,9 +13,11 @@ export function TopBar({ amName }: { amName: string }) {
         <div className="flex items-center gap-3 px-4 py-2 rounded-full border border-[var(--color-border-hairline)]">
           <div className="relative">
             <Image
-              src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=80&h=80&fit=crop&crop=face"
-              alt={amName} width={28} height={28} unoptimized
-              className="rounded-full"
+              src="/michelle.png"
+              alt={amName}
+              width={28} height={28}
+              className="rounded-full object-cover"
+              style={{ width: 28, height: 28 }}
             />
             <span className="absolute -bottom-0.5 -right-0.5 w-2.5 h-2.5 rounded-full bg-green-500 border-2 border-white" />
           </div>

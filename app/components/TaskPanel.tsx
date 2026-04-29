@@ -63,7 +63,7 @@ export function TaskPanel({ tasks }: { tasks: ZeeData['tasks'] }) {
                           rel="noopener noreferrer"
                           className="text-xs px-3 py-1 border border-[var(--color-orange)] rounded-full text-[var(--color-orange)] hover:bg-[var(--color-orange-tint)] transition flex items-center gap-1"
                         >
-                          <ExternalLink className="w-3 h-3" /> View form
+                          <ExternalLink className="w-3 h-3" /> {task.formCtaLabel || 'View form'}
                         </a>
                       )}
                     </div>

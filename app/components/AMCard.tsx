@@ -1,14 +1,15 @@
 import Image from 'next/image';
 
-export function AMCard({ am }: { am: { name: string; title: string; bio: string; photoUrl: string } }) {
+export function AMCard({ am }: { am: { name: string; title: string; bio: string; photoUrl: string; email: string } }) {
   return (
     <section className="brand-card-elevated p-8 md:p-10">
       <div className="flex flex-col md:flex-row gap-8">
         <div className="flex-shrink-0 flex flex-col items-center md:items-start">
           <Image
             src={am.photoUrl} alt={am.name}
-            width={96} height={96} unoptimized
-            className="rounded-full ring-2 ring-[var(--color-orange)] ring-offset-4 ring-offset-white"
+            width={96} height={96}
+            className="rounded-full ring-2 ring-[var(--color-orange)] ring-offset-4 ring-offset-white object-cover"
+            style={{ width: 96, height: 96 }}
           />
           <div className="mt-3 flex items-center gap-2">
             <span className="w-2 h-2 rounded-full bg-green-500" />

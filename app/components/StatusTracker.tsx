@@ -4,10 +4,10 @@ import { Check, ChevronDown } from 'lucide-react';
 import type { OnboardingStage } from '@/app/data/zees';
 
 const STAGES: Array<{ id: number; key: OnboardingStage; label: string }> = [
-  { id: 1, key: 'welcome_aboard', label: 'WELCOME ABOARD' },
+  { id: 1, key: 'kickoff_call_complete', label: 'KICKOFF CALL COMPLETE' },
   { id: 2, key: 'agency_change_submitted', label: 'AGENCY CHANGE SUBMITTED' },
   { id: 3, key: 'corporate_access_granted', label: 'CORPORATE ACCESS GRANTED' },
-  { id: 4, key: 'campaigns_built', label: 'CAMPAIGNS BUILT' },
+  { id: 4, key: 'revspark_setup_and_builds', label: 'REVSPARK SETUP & BUILDS' },
   { id: 5, key: 'live', label: 'LIVE' },
 ];
 
@@ -20,7 +20,7 @@ function getStageState(stageKey: OnboardingStage, current: OnboardingStage): 'co
   return 'future';
 }
 
-export function StatusTracker({ currentStage, dayOfTen }: { currentStage: OnboardingStage; dayOfTen: number }) {
+export function StatusTracker({ currentStage, dayOfTotal, totalDays }: { currentStage: OnboardingStage; dayOfTotal: number; totalDays: number }) {
   const [expanded, setExpanded] = useState(false);
   const completedCount = STAGES.filter(s => getStageState(s.key, currentStage) === 'complete').length;
   const progressPct = ((completedCount + 0.5) / STAGES.length) * 100;
@@ -58,7 +58,7 @@ export function StatusTracker({ currentStage, dayOfTen }: { currentStage: Onboar
           })}
         </div>
         <p className="text-base text-[var(--color-text-secondary)] text-center">
-          Day {dayOfTen} of 10. Your campaigns are built. Launch day is {Math.max(0, 10 - dayOfTen)} days away.
+          Day {dayOfTotal} of {totalDays} business days.
         </p>
       </div>
 
@@ -71,7 +71,7 @@ export function StatusTracker({ currentStage, dayOfTen }: { currentStage: Onboar
           <div className="h-full bg-[var(--color-orange)] rounded-full transition-all" style={{ width: `${progressPct}%` }} />
         </div>
         <button onClick={() => setExpanded(!expanded)} className="flex items-center gap-1 text-xs text-[var(--color-text-muted)]">
-          <span>Day {dayOfTen} of 10</span>
+          <span>Day {dayOfTotal} of {totalDays}</span>
           <ChevronDown className={`w-3 h-3 transition-transform ${expanded ? 'rotate-180' : ''}`} />
         </button>
         {expanded && (
